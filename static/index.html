@@ -264,7 +264,8 @@
       if (!langCode) {
         document.cookie = "googtrans=; path=/; max-age=0";
         try {
-          sessionStorage.removeItem("langAutoDetected");
+          /* Must stay set: otherwise reload re-runs auto-translate and forces e.g. /nl/en again. */
+          sessionStorage.setItem("langAutoDetected", "true");
         } catch (e) {}
         showTranslationLoader();
         location.reload();
